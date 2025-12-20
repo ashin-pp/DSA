@@ -10,6 +10,7 @@
 //         for(let i=0;i<key.length;i++){
 //             index+=key.charCodeAt(i);
 //         }
+
 //         return index % this.size;
 //     }
 

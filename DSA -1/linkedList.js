@@ -203,6 +203,56 @@ class LinkedList{
         console.log(str);
         
     }
+sort(){
+    this.head=this.mergesort(this.head)
+}
+
+ getMiddle(head){
+    let prev=null;
+    let slow=head;
+    let fast=head;
+    while(fast!==null&&fast.next!==null){
+        prev=slow;
+        slow=slow.next;
+        fast=fast.next.next;
+
+    }
+
+    if(prev){
+        prev.next=null;
+    }
+    return slow;
+ }
+   
+ mergesort(head){
+    if(head==null||head.next==null){
+        return head;
+    }
+    let mid=this.getMiddle(head);
+    let left=this.mergesort(head);
+    let right=this.mergesort(mid);
+
+    return this.merge(left,right)
+ }
+
+   merge(left,right){
+    let dummy=new Node(0);
+    let tail=dummy;
+
+    while(left&&right){
+        if(left.value<=right.value){
+            tail.next=left;
+            left=left.next
+        }else{
+            tail.next=right;
+            right=right.next;
+        }
+        tail=tail.next;
+    }
+    tail.next=left!==null?left:right;
+    return dummy.next;
+   }
+
 
 
 }
@@ -223,7 +273,7 @@ list.append(10)
 // list.reverse()
 // console.log(list.search(20));
 list.removeAt()
-
+list.sort()
 // list.removeDuplicate()
 list.print()
 

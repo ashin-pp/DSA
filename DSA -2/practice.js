@@ -138,24 +138,52 @@
 
 // console.log(reverseUsingMerge("hello"))
 
-function validAnagram(str1, str2){
-     if(str1.length!==str2.length) return false;
+// function validAnagram(str1, str2){
+//      if(str1.length!==str2.length) return false;
 
-     let freq={};
+//      let freq={};
 
-     for(let i=0;i<str1.length;i++){
-        freq[str1[i]]=(freq[str1[i]]||0)+1;
-        freq[str2[i]]=(freq[str2[i]]||0)-1;
+//      for(let i=0;i<str1.length;i++){
+//         freq[str1[i]]=(freq[str1[i]]||0)+1;
+//         freq[str2[i]]=(freq[str2[i]]||0)-1;
 
-     }
+//      }
 
-     for(let x in freq){
-        if(freq[x]!==0){
-            return false;
+//      for(let x in freq){
+//         if(freq[x]!==0){
+//             return false;
+//         }
+//      }
+//      return true;
+// }
+
+// console.log(validAnagram("anagram", "nagaram"))
+// console.log(validAnagram("rat", "car"))
+
+
+function isBalancedParentheses(str){
+    let stack=[];
+    let  map={
+        ")":"(",
+        "}":"{",
+        "]":"["
+    }
+
+    for(let ch of str){
+        if(ch=="("||ch=="{"||ch=="["){
+            stack.push(ch);
+        }else if(ch==")"||ch=="}"||ch=="]"){
+            let top=stack.pop();
+            if(top!==map[ch]){
+                return false
+            }
         }
-     }
-     return true;
+
+
+    }
+    return stack.length==0
 }
 
-console.log(validAnagram("anagram", "nagaram"))
-console.log(validAnagram("rat", "car"))
+console.log(isBalancedParentheses("({})"))
+
+
